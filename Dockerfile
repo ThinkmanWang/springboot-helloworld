@@ -1,8 +1,9 @@
-FROM maven as build-stage
+#FROM maven:3.6.3-openjdk-8 as build-stage
+FROM registry.cn-hangzhou.aliyuncs.com/acs/maven:3-jdk-8 as build-stage
 WORKDIR /app
 COPY . .
 
-RUN mvn clean package -Dmaven.test.skip=true
+RUN mvn clean install
 RUN ls /app
 
 # 基础镜像
