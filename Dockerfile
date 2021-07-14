@@ -7,9 +7,10 @@ RUN ls /app
 
 # 基础镜像
 FROM openjdk:8
-COPY --from=build-stage /app/target/helloworld-0.0.1-SNAPSHOT.jar helloworld-0.0.1-SNAPSHOT.jar
+WORKDIR /app
+COPY --from=build-stage /app/target/helloworld-0.0.1-SNAPSHOT.jar /app/target/helloworld-0.0.1-SNAPSHOT.jar
 EXPOSE 8080
-CMD ["java", "-jar", "target/helloworld-0.0.1-SNAPSHOT.jar"]
+CMD ["java", "-jar", "/app/target/helloworld-0.0.1-SNAPSHOT.jar"]
 
 
 #FROM openjdk:8
