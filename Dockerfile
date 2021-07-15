@@ -3,7 +3,7 @@ FROM registry.cn-hangzhou.aliyuncs.com/acs/maven:3-jdk-8 as build-stage
 WORKDIR /app
 COPY . .
 
-RUN mvn clean install
+RUN mvn clean package
 RUN ls /app
 
 # 基础镜像
