@@ -13,7 +13,7 @@
 #EXPOSE 8080
 #CMD ["java", "-jar", "/app/target/helloworld-0.0.1-SNAPSHOT.jar"]
 
-FROM openjdk:8
+FROM registry.cn-hangzhou.aliyuncs.com/think-k8s/openjdk:8
 WORKDIR /app
 COPY ./target/helloworld-0.0.1-SNAPSHOT.jar /app/target/helloworld-0.0.1-SNAPSHOT.jar
 EXPOSE 8080
