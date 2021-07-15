@@ -1,15 +1,21 @@
 #FROM maven:3.6.3-openjdk-8 as build-stage
-FROM registry.cn-hangzhou.aliyuncs.com/acs/maven:3-jdk-8 as build-stage
-WORKDIR /app
-COPY . .
+#FROM registry.cn-hangzhou.aliyuncs.com/acs/maven:3-jdk-8 as build-stage
+#WORKDIR /app
+#COPY . .
 
-RUN mvn clean package
-RUN ls /app
+#RUN mvn clean install
+#RUN ls /app
 
 # 基础镜像
+#FROM openjdk:8
+#WORKDIR /app
+#COPY --from=build-stage /app/target/helloworld-0.0.1-SNAPSHOT.jar /app/target/helloworld-0.0.1-SNAPSHOT.jar
+#EXPOSE 8080
+#CMD ["java", "-jar", "/app/target/helloworld-0.0.1-SNAPSHOT.jar"]
+
 FROM openjdk:8
 WORKDIR /app
-COPY --from=build-stage /app/target/helloworld-0.0.1-SNAPSHOT.jar /app/target/helloworld-0.0.1-SNAPSHOT.jar
+COPY ./target/helloworld-0.0.1-SNAPSHOT.jar /app/target/helloworld-0.0.1-SNAPSHOT.jar
 EXPOSE 8080
 CMD ["java", "-jar", "/app/target/helloworld-0.0.1-SNAPSHOT.jar"]
 
